@@ -25,8 +25,7 @@ function Header(props){
 }
 
 function Navigation(props){
-const lis = [
-]
+const lis = [];
 for(let i = 0; i<props.topics.length;i++){
   let t = props.topics[i];
   lis.push(<li key={t.id}><a id={t.id} href={'/read/' + t.id} onClick={(e)=>{
@@ -70,7 +69,7 @@ function Update(props){
   return <article>
     <h2>Update</h2>
     <form onSubmit={e=>{
-      e.preventDefault();
+      e.preventDefault(); 
       const title = e.target.title.value;
       const body = e.target.body.value;
       props.onUpdate(title,body);
