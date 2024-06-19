@@ -1,5 +1,5 @@
 import React, {Component, useState, useReducer } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useAsyncError, useParams } from 'react-router-dom';
 import './App.css';
 
 function write(){
@@ -37,7 +37,7 @@ function write(){
 
 }
 
-function update(props){
+function update(bbsId){
     let user = JSON.parse(localStorage.getItem('user'));
     
     let bbsCount = localStorage.getItem('bbsCount');
@@ -52,24 +52,27 @@ function update(props){
         bbsList = JSON.parse(bbsList);
     }
 
-    let title = document.querySelector('[name=title]').value;
-    let content = document.querySelector('[name=content]').value;
-
+    let title = document.querySelector('[name="title"]').value;
+    let content = document.querySelector('[name="content"]').value;
+    console.log(bbsId);
     let bbsInfo = {
-        bbsId : Number(props.bbsId),
+        bbsId : Number(bbsId),
         uId : Number(user.uId),
         title : title,
         content : content
     }
 
+    for (let i = 0; i < bbsList.length; i++) {
+        if(bbsList[i].bbsId == bbsId){
+            bbsList[i] = bbsInfo;
+        }
+    }
+
     bbsList.push(bbsInfo);
 
-    localStorage.setItem('bbsList', JSON.stringify(bbsList));
-
-    localStorage.setItem('bbsCount',Number(bbsCount)+1);
+    // localStorage.setItem('bbsList', JSON.stringify(bbsList));
     
-    window.location.href = '/detail/'+bbsCount;
-
+    window.location.href = '/detail/'+bbsId;
 }
 
 function update_setting( bbsId ){
@@ -86,25 +89,41 @@ function update_setting( bbsId ){
 
 function Write(){
     const { bbsId } = useParams();
+    let [mode, setMode] = useState('WRITE');
     let bbs;
-    let title = '';
+    let [title,setTitle] = useState('');
     let content = '';
     if (bbsId != null && bbsId != undefined ){
+        if(mode == 'WRITE'){
+            setMode('UPDATE');
+        }
+    }
+
+    let buttonBox;
+
+    if( mode === 'WRITE' ){
+        buttonBox = <div className='buttonBox'>
+                        <button><Link to={'/list'}>뒤로가기</Link></button>
+                        <button onClick={write}>글 작성</button>
+                    </div>
+    }else if(mode === 'UPDATE'){
         bbs = update_setting(bbsId);
-        console.log(bbs);
-        title = bbs.title;
+        // console.log(bbs);
         content = bbs.content;
-    } 
+        title = bbs.title;
+        buttonBox = <div className='buttonBox'>
+                        <button><Link to={'/detail/'+bbsId}>뒤로가기</Link></button>
+                        <button onClick={e=>{update(bbsId)}}>글 수정</button>
+                    </div>
+    }
+
     return (
         <>
-        <div className='buttonBox'>
-            <button><Link to={'/list'}>뒤로가기</Link></button>
-            <button onClick={write}>글 작성</button>
-        </div>
+        {buttonBox}
         <div className='writeBox'>
             <form>
-                <input name="title" placeholder='제목을 입력해주세요' value={title}/>
-                <textarea name='content' placeholder='내용을 입력해주세요'>{content}</textarea>
+                <input name="title" placeholder='제목을 입력해주세요' value={title} onChange={e=>{ setTitle( e.target.value) }}/>
+                <textarea name='content' placeholder='내용을 입력해주세요' >{content}</textarea>
             </form>
         </div>
         </>
