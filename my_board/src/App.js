@@ -9,6 +9,10 @@ import Update from './Update.js';
 import NotFound from './NotFound';
 import './App.css';
 
+function logout(){
+  localStorage.removeItem('user');
+  window.location.href = '/';
+}
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -17,7 +21,14 @@ function App() {
     <BrowserRouter>
     <div className="App">
         <header className="App-header">
-          <p>연습용</p>
+          <p>SIMPLE IS BEST</p>
+          <div className='head-nav'>
+            <ul className='nav'>
+              <li>
+                <span onClick={logout}>Log out</span>
+              </li>
+            </ul>
+          </div>
         </header>
         <div>
           <Routes>

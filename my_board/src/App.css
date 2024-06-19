@@ -1,15 +1,48 @@
+@font-face {
+  font-family: 'Amorria';
+  src: url('../public/Amorria-Brush.ttf') format('truetype');
+}
+*{
+  font-family: 'Amorria';
+}
+
 header{
   width: 100%;
   height: 100px;
-  background: linear-gradient(rgb(17, 182, 91),rgb(167, 121, 21));
+  background: linear-gradient(to right,rgb(0, 0, 0),rgb(126, 12, 136));
   text-align: center;
   display: block;
+  position: relative;
 }
 header p{
   line-height: 100px;
   font-size: 1.5em;
   color: azure;
 }
+.head-nav{
+  width: 30%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.head-nav ul, .head-nav li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.head-nav ul{
+  display: flex;
+  
+  /* justify-content: center; */
+}
+.head-nav li{
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}  
+
+
 p, a { margin: 0; padding: 0; color: black;}
 ul,li {margin:0; padding:0;}
 .login-div{
@@ -64,12 +97,17 @@ ul,li {margin:0; padding:0;}
   width: 100%;
 }
 
-.writeBox form ,.writeBox > div{
+.writeBox > div{
   margin: auto;
   width: 80%;
 }
-.writeBox form input, .writeBox form textarea{
+.writeBox > form{
+  margin: auto;
   width: 100%;
+  text-align: center;
+}
+.writeBox form input, .writeBox form textarea{
+  width: 83%;
   margin-bottom: 1em;
 }
 

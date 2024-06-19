@@ -68,9 +68,9 @@ function update(bbsId){
         }
     }
 
-    bbsList.push(bbsInfo);
+    // bbsList.push(bbsInfo);
 
-    // localStorage.setItem('bbsList', JSON.stringify(bbsList));
+    localStorage.setItem('bbsList', JSON.stringify(bbsList));
     
     window.location.href = '/detail/'+bbsId;
 }
@@ -86,12 +86,33 @@ function update_setting( bbsId ){
     return temp;
 }
 
+function Writebox(props){
+    let [title, setTitle] = useState(props.title);
+    let [content, setContent] = useState(props.content);
+    
+    let form = <form>
+                <input name="title" placeholder='제목을 입력해주세요' />
+                <textarea name='content' placeholder='내용을 입력해주세요' ></textarea>
+            </form>
+    if(props.mode == 'UPDATE'){
+        form = <form>
+                <input name="title" placeholder='제목을 입력해주세요' value={title} onChange={e=>{ setTitle( e.target.value) }}/>
+                <textarea name='content' placeholder='내용을 입력해주세요' >{content}</textarea>
+            </form>
+    }
+
+    return (
+        <div className='writeBox'>
+            {form}
+        </div>
+    )
+}
 
 function Write(){
     const { bbsId } = useParams();
     let [mode, setMode] = useState('WRITE');
     let bbs;
-    let [title,setTitle] = useState('');
+    let title = '';
     let content = '';
     if (bbsId != null && bbsId != undefined ){
         if(mode == 'WRITE'){
@@ -120,12 +141,7 @@ function Write(){
     return (
         <>
         {buttonBox}
-        <div className='writeBox'>
-            <form>
-                <input name="title" placeholder='제목을 입력해주세요' value={title} onChange={e=>{ setTitle( e.target.value) }}/>
-                <textarea name='content' placeholder='내용을 입력해주세요' >{content}</textarea>
-            </form>
-        </div>
+        <Writebox mode={mode} title={title} content={content}/>
         </>
     );
 }
