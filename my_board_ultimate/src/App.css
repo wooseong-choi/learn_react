@@ -1,0 +1,158 @@
+@font-face {
+  font-family: 'Amorria';
+  src: url('../public/Amorria-Brush.ttf') format('truetype');
+}
+*{
+  font-family: 'Amorria';
+}
+
+header{
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to right,rgb(0, 0, 0),rgb(126, 12, 136));
+  text-align: center;
+  display: block;
+  position: relative;
+}
+header p{
+  line-height: 100px;
+  font-size: 1.5em;
+  color: azure;
+}
+.head-nav{
+  width: 30%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.head-nav ul, .head-nav li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.head-nav ul{
+  display: flex;
+  
+  /* justify-content: center; */
+}
+.head-nav li{
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}  
+
+
+p, a { margin: 0; padding: 0; color: black;}
+ul,li {margin:0; padding:0;}
+.login-div{
+  display: flex;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+.login-div div{
+  width: 100%;
+}
+.login-input{
+  margin: auto;
+  width: 80%;
+  line-height: 40px;
+  margin-bottom: 10px;
+  
+}
+.underLine{
+  text-decoration: underline;
+}
+.bold{
+  font-weight: bold;
+}
+
+.list {
+  /* padding-left: 20px; */
+  width: 83%;
+  margin: auto;
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  border-bottom: 1px solid gray;
+  list-style-type: none;
+}
+
+
+.buttonBox{
+  text-align: right;
+  margin: auto;
+  margin-top: 10px;
+
+  width: 83%;
+}
+
+.buttonBox button{
+  margin-left: 5px;
+}
+
+.writeBox{
+  margin-top: 1em;
+  width: 100%;
+}
+
+.writeBox > div{
+  margin: auto;
+  width: 80%;
+}
+.writeBox > form{
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+.writeBox form input, .writeBox form textarea{
+  width: 83%;
+  margin-bottom: 1em;
+}
+
+.writeBox form input{
+  line-height: 15px;
+  font-size: 1.5em;
+}
+
+.writeBox form textarea{
+  height: 300px;
+  line-height: 15px;
+  font-size: 1.4em;
+}
+
+.commentDiv{
+  width: 100%;
+  position: relative;
+}
+
+.commentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 버튼을 왼쪽으로 정렬할 수 있도록 기본 설정 */
+}
+.commentDiv textarea{
+  width: 100%;
+}
+.commentDiv button {
+  align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
+  margin-top: 10px; /* 원하는 만큼의 여백을 설정할 수 있습니다 */
+}
+.commentList {
+  list-style-type: none; /* 기본 리스트 마커 제거 */
+  padding: 0;
+}
+
+.commentList li {
+  max-width: 30%;
+  background-color: #f0f0f0; /* 배경색 설정 */
+  padding: 10px; /* 내부 여백 설정 */
+  margin-bottom: 10px; /* 댓글 아이템 사이의 간격 설정 */
+  border-radius: 5px; /* 둥근 테두리 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+}
+.commentList li:nth-child(even) {
+  margin: auto;
+  margin-right: 0;
+}
