@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { BbsController } from './bbs/bbs.controller';
 import { BbsService } from './bbs/bbs.service';
 import { BbsModule } from './bbs/bbs.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { BbsModule } from './bbs/bbs.module';
     }),
     UserModule,
     BbsModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
